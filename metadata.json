@@ -1,0 +1,6 @@
+{
+  "name": "n8n AI Workflow Builder",
+  "description": "An interactive visual node-based workflow editor inspired by n8n, featuring real-time execution pipelines, dynamic connection handles, simulated triggers/notifications (Slack/Inbox), code executions, and live AI Agent nodes powered by Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
