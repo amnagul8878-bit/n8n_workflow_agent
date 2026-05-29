@@ -218,7 +218,7 @@ export default function WorkflowCanvas({
     <div
       ref={canvasRef}
       onMouseDown={handleCanvasMouseDown}
-      className={`flex-1 relative overflow-hidden bg-[#0d131f] select-none ${isPanning ? "cursor-grabbing" : "cursor-grab"}`}
+      className={`flex-1 relative overflow-hidden bg-[#fafbfc] select-none ${isPanning ? "cursor-grabbing" : "cursor-grab"}`}
       style={{ touchAction: "none" }}
     >
       {/* Visual Workspace grid under transformation */}
@@ -227,7 +227,7 @@ export default function WorkflowCanvas({
         className="absolute inset-0 origin-top-left"
         style={{
           transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
-          backgroundImage: "radial-gradient(#273449 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(#cbd5e1 1.5px, transparent 1.5px)",
           backgroundSize: "20px 20px"
         }}
       >
@@ -272,22 +272,22 @@ export default function WorkflowCanvas({
                 <path
                   d={pathData}
                   fill="none"
-                  stroke={isFlowSuccess ? "url(#active-flow)" : "#1e293b"}
+                  stroke={isFlowSuccess ? "url(#active-flow)" : "#e2e8f0"}
                   strokeWidth={4}
-                  className="transition-all duration-300 opacity-60 group-hover:stroke-amber-500 group-hover:opacity-100 group-hover:stroke-[5px]"
+                  className="transition-all duration-300 opacity-60 group-hover:stroke-amber-400 group-hover:opacity-100 group-hover:stroke-[5px]"
                 />
 
                 <path
                   d={pathData}
                   fill="none"
-                  stroke={isFlowSuccess ? "#10b981" : isFlowRunning ? "#f59e0b" : "#475569"}
+                  stroke={isFlowSuccess ? "#10b981" : isFlowRunning ? "#f59e0b" : "#94a3b8"}
                   strokeWidth={2}
                   className="transition-all duration-300"
                 />
 
                 {/* Simulated glowing charge moving down pipeline when successful */}
                 {isFlowSuccess && (
-                  <circle r="4" fill="#6ee7b7" filter="url(#glow)">
+                  <circle r="4" fill="#10b981" filter="url(#glow)">
                     <animateMotion dur="2.2s" repeatCount="indefinite" path={pathData} />
                   </circle>
                 )}
@@ -344,7 +344,7 @@ export default function WorkflowCanvas({
                 left: `${midX - 9}px`,
                 top: `${midY - 9}px`
               }}
-              className="absolute w-4.5 h-4.5 bg-rose-950 border border-rose-900 rounded-full text-rose-405 flex items-center justify-center hover:bg-rose-900 hover:text-white transition-all scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 hover:scale-110 cursor-pointer z-20 hover:shadow-[0_0_8px_rgba(239,68,68,0.4)]"
+              className="absolute w-4.5 h-4.5 bg-rose-50 border border-rose-200 rounded-full text-rose-500 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-all scale-75 opacity-0 group-hover:opacity-100 group-hover:scale-100 hover:scale-110 cursor-pointer z-20 hover:shadow-[0_0_8px_rgba(239,68,68,0.2)]"
               title="Delete this connection line link"
             >
               <X className="w-2.5 h-2.5" />
@@ -367,46 +367,46 @@ export default function WorkflowCanvas({
                 width: `${CARD_WIDTH}px`,
                 height: `${CARD_HEIGHT}px`
               }}
-              className={`absolute rounded-xl bg-slate-900 border text-white transition-transform ${
+              className={`absolute rounded-xl bg-white border text-slate-800 shadow-md hover:shadow-lg transition-all ${
                 isSelected
-                  ? "border-orange-500 shadow-[0_0_18px_rgba(249,115,22,0.18)]"
+                  ? "border-orange-500 ring-2 ring-orange-500/10 shadow-[0_0_15px_rgba(249,115,22,0.15)]"
                   : status === 'success'
-                  ? "border-emerald-500/85 hover:border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.1)]"
+                  ? "border-emerald-500 hover:border-emerald-600 shadow-[0_4px_12px_rgba(16,185,129,0.06)]"
                   : status === 'failed'
-                  ? "border-rose-500 hover:border-rose-500 shadow-[0_0_12px_rgba(239,68,68,0.15)] animate-[shake_0.4s_ease]"
+                  ? "border-rose-500 hover:border-rose-600 shadow-[0_4px_12px_rgba(239,68,68,0.08)] animate-[shake_0.4s_ease]"
                   : status === 'running'
-                  ? "border-amber-500/80 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
-                  : "border-slate-800 hover:border-slate-700"
+                  ? "border-amber-500 shadow-[0_4px_12px_rgba(245,158,11,0.08)]"
+                  : "border-slate-200 hover:border-slate-300"
               }`}
             >
               {/* Node top header dragging handle */}
               <div
                 id={`node-hdr-${node.id}`}
                 onMouseDown={(e) => handleNodeHeaderMouseDown(e, node)}
-                className={`px-3 py-1.5 rounded-t-xl flex items-center justify-between cursor-grab active:cursor-grabbing border-b border-slate-800 bg-slate-950/60`}
+                className={`px-3 py-1.5 rounded-t-xl flex items-center justify-between cursor-grab active:cursor-grabbing border-b border-slate-100 bg-slate-50/50`}
               >
                 <div className="flex items-center gap-2 min-w-0">
                   {getIcon(node.type)}
-                  <span className="font-bold text-[11px] truncate text-slate-100 tracking-tight">
+                  <span className="font-bold text-[11px] truncate text-slate-700 tracking-tight">
                     {node.name}
                   </span>
                 </div>
 
                 {/* Visual run status symbols */}
                 {status === 'success' && (
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 filter drop-shadow-[0_0_2px_#10b981]" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 filter drop-shadow-[0_0_1px_rgba(16,185,129,0.2)]" />
                 )}
                 {status === 'failed' && (
-                  <AlertCircle className="w-3.5 h-3.5 text-rose-450 shrink-0 animate-ping" />
+                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 shrink-0 animate-pulse" />
                 )}
                 {status === 'running' && (
-                  <div className="w-3.5 h-3.5 rounded-full border border-t-amber-400 border-amber-900/30 animate-spin shrink-0"></div>
+                  <div className="w-3.5 h-3.5 rounded-full border border-t-amber-500 border-amber-200 animate-spin shrink-0"></div>
                 )}
               </div>
 
               {/* Node summary stats block */}
-              <div className="p-2 px-3 text-[10px] text-slate-400 flex flex-col justify-between h-[52px]">
-                <p className="truncate text-slate-350">
+              <div className="p-2 px-3 text-[10px] text-slate-500 flex flex-col justify-between h-[52px]">
+                <p className="truncate text-slate-600 font-medium pl-0.5">
                   {node.type === "gemini_ai"
                     ? `Instruct: "${node.parameters.systemInstruction || 'Assistant'}"`
                     : node.type === "js_code"
@@ -418,12 +418,12 @@ export default function WorkflowCanvas({
                     : "n8n Workflow Node step"}
                 </p>
 
-                <div className="flex items-center justify-between text-[9px] text-slate-500">
-                  <span className="uppercase font-mono text-[8px] bg-slate-950 px-1 py-0.5 rounded">
+                <div className="flex items-center justify-between text-[9px] text-slate-400">
+                  <span className="uppercase font-mono text-[8.5px] bg-slate-100 text-slate-600 px-1 py-0.5 rounded font-semibold border border-slate-200">
                     {node.type.replace("_", " ")}
                   </span>
                   {node.executionState?.executionTimeMs !== undefined && (
-                    <span className="font-mono text-amber-500/80">
+                    <span className="font-mono text-amber-600 bg-amber-50 px-1 rounded font-semibold">
                       {node.executionState.executionTimeMs}ms
                     </span>
                   )}
@@ -436,10 +436,10 @@ export default function WorkflowCanvas({
                 <div
                   id={`port-in-${node.id}`}
                   onMouseUp={(e) => handlePortMouseUp(e, node)}
-                  className="absolute w-3.5 h-3.5 bg-slate-950 border border-slate-700 hover:border-amber-400 hover:bg-amber-500/20 rounded-full cursor-crosshair -left-1.5 top-1/2 -mt-1.5 flex items-center justify-center transition-colors z-30"
+                  className="absolute w-3.5 h-3.5 bg-white border-2 border-slate-350 hover:border-amber-500 hover:bg-amber-100 rounded-full cursor-crosshair -left-1.5 top-1/2 -mt-1.5 flex items-center justify-center transition-all z-30 shadow-sm"
                   title="Pipeline Input"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-amber-400"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-400 group-hover:bg-amber-500"></div>
                 </div>
               )}
 
@@ -448,7 +448,7 @@ export default function WorkflowCanvas({
                 <div
                   id={`port-out-${node.id}`}
                   onMouseDown={(e) => handlePortMouseDown(e, node, "output")}
-                  className="absolute w-3.5 h-3.5 bg-slate-950 border border-slate-700 hover:border-orange-400 hover:bg-orange-500/20 rounded-full cursor-crosshair -right-1.5 top-1/2 -mt-1.5 flex items-center justify-center transition-colors z-30"
+                  className="absolute w-3.5 h-3.5 bg-white border-2 border-slate-350 hover:border-orange-500 hover:bg-orange-100 rounded-full cursor-crosshair -right-1.5 top-1/2 -mt-1.5 flex items-center justify-center transition-all z-30 shadow-sm"
                   title="Connect pipeline next step"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
@@ -462,11 +462,11 @@ export default function WorkflowCanvas({
                   <div
                     id={`port-true-${node.id}`}
                     onMouseDown={(e) => handlePortMouseDown(e, node, "true")}
-                    className="absolute w-3.5 h-3.5 bg-slate-950 border border-emerald-700 hover:border-emerald-400 hover:bg-emerald-500/20 rounded-full cursor-crosshair -right-1.5 top-1/3 -mt-1.5 flex items-center justify-center transition-colors z-30"
+                    className="absolute w-3.5 h-3.5 bg-white border-2 border-slate-350 hover:border-emerald-500 hover:bg-emerald-100 rounded-full cursor-crosshair -right-1.5 top-1/3 -mt-1.5 flex items-center justify-center transition-all z-30 shadow-sm"
                     title="Path True"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                    <span className="absolute left-4 -top-0.5 text-[8px] uppercase tracking-wider font-bold text-emerald-400 font-mono select-none">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                    <span className="absolute left-4 -top-0.5 text-[8.5px] uppercase tracking-wider font-bold text-emerald-600 font-mono select-none">
                       True
                     </span>
                   </div>
@@ -475,11 +475,11 @@ export default function WorkflowCanvas({
                   <div
                     id={`port-false-${node.id}`}
                     onMouseDown={(e) => handlePortMouseDown(e, node, "false")}
-                    className="absolute w-3.5 h-3.5 bg-slate-950 border border-rose-700 hover:border-rose-450 hover:bg-rose-500/20 rounded-full cursor-crosshair -right-1.5 top-2/3 -mt-1.5 flex items-center justify-center transition-colors z-30"
+                    className="absolute w-3.5 h-3.5 bg-white border-2 border-slate-350 hover:border-rose-500 hover:bg-rose-100 rounded-full cursor-crosshair -right-1.5 top-2/3 -mt-1.5 flex items-center justify-center transition-all z-30 shadow-sm"
                     title="Path False"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-rose-450"></div>
-                    <span className="absolute left-4 -top-0.5 text-[8px] uppercase tracking-wider font-bold text-rose-450 font-mono select-none">
+                    <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                    <span className="absolute left-4 -top-0.5 text-[8.5px] uppercase tracking-wider font-bold text-rose-600 font-mono select-none">
                       False
                     </span>
                   </div>
@@ -491,30 +491,30 @@ export default function WorkflowCanvas({
       </div>
 
       {/* Floating Canvas Camera controls */}
-      <div className="absolute right-4 bottom-4 bg-slate-900/90 backdrop-blur border border-slate-800 p-1.5 rounded-xl flex items-center gap-1 shadow-2xl z-30">
+      <div className="absolute right-4 bottom-4 bg-white/95 backdrop-blur border border-slate-200 p-1.5 rounded-xl flex items-center gap-1 shadow-md z-30">
         <button
           id="btn-scale-in"
           onClick={() => setZoom(Math.min(1.5, zoom + 0.1))}
-          className="p-1 px-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
+          className="p-1 px-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer text-xs flex items-center gap-1 font-semibold"
           title="Zoom In"
         >
           <ZoomIn className="w-3.5 h-3.5" />
         </button>
 
-        <span className="text-[10px] text-slate-400 font-mono min-w-[40px] text-center font-bold">
+        <span className="text-[10px] text-slate-600 font-mono min-w-[40px] text-center font-bold">
           {Math.round(zoom * 100)}%
         </span>
 
         <button
           id="btn-scale-out"
           onClick={() => setZoom(Math.max(0.6, zoom - 0.1))}
-          className="p-1 px-2 rounded-lg hover:bg-slate-800 text-slate-300 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
+          className="p-1 px-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer text-xs flex items-center gap-1 font-semibold"
           title="Zoom Out"
         >
           <ZoomOut className="w-3.5 h-3.5" />
         </button>
 
-        <div className="w-px h-4 bg-slate-850 mx-1"></div>
+        <div className="w-px h-4 bg-slate-200 mx-1"></div>
 
         <button
           id="btn-scale-reset"
@@ -522,19 +522,19 @@ export default function WorkflowCanvas({
             setPan({ x: 0, y: 0 });
             setZoom(1);
           }}
-          className="p-1 px-2 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
+          className="p-1 px-2 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors cursor-pointer text-xs flex items-center gap-1 font-bold"
           title="Center Workflow Views"
         >
           <RotateCcw className="w-3.5 h-3.5" />
-          <span className="text-[9px] uppercase font-bold text-slate-500">Reset</span>
+          <span className="text-[9px] uppercase tracking-wider text-slate-500">Reset</span>
         </button>
       </div>
 
       {/* Quick Visual Help Banner */}
-      <div className="absolute left-4 bottom-4 bg-slate-900/60 backdrop-blur border border-slate-850 p-2.5 rounded-xl max-w-sm hidden lg:flex items-start gap-2.5 select-none text-[10px] text-slate-400 z-10">
+      <div className="absolute left-4 bottom-4 bg-white/90 backdrop-blur border border-slate-200 p-2.5 rounded-xl max-w-sm hidden lg:flex items-start gap-2.5 select-none text-[10px] text-slate-600 z-10 shadow-lg">
         <HelpCircle className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
         <div className="leading-normal">
-          <p className="font-bold text-slate-200">Interactive Controls:</p>
+          <p className="font-bold text-slate-800">Interactive Controls:</p>
           <p>• Pan around using mouse **click and drag** on grid background.</p>
           <p>• Reposition node blocks by dragging their title headers.</p>
           <p>• Connect nodes by dragging orange dots to side handles.</p>

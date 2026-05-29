@@ -23,14 +23,14 @@ export default function TemplatesPanel({ onSelectTemplate, activeTemplateId }: T
   };
 
   return (
-    <div id="templates-panel" className="bg-slate-900 border-b border-slate-800 p-4 shrink-0">
+    <div id="templates-panel" className="bg-slate-50 border-b border-slate-200 p-4 shrink-0">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-white font-medium tracking-tight flex items-center gap-2">
+          <h2 className="text-slate-800 font-semibold tracking-tight flex items-center gap-2">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></span>
             n8n Interactive Playground
           </h2>
-          <p className="text-slate-400 text-xs mt-0.5">
+          <p className="text-slate-500 text-xs mt-0.5">
             Select a pre-built template to explore live executions, or start dragging visual nodes from the library.
           </p>
         </div>
@@ -45,13 +45,13 @@ export default function TemplatesPanel({ onSelectTemplate, activeTemplateId }: T
                 onClick={() => onSelectTemplate(tmpl)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-orange-500/10 border-orange-500/50 text-orange-400 shadow-[0_0_12px_rgba(249,115,22,0.1)]"
-                    : "bg-slate-850 border-slate-800 text-slate-300 hover:bg-slate-800 hover:border-slate-700"
+                    ? "bg-orange-500/10 border-orange-500/40 text-orange-600 shadow-sm font-semibold"
+                    : "bg-white border-slate-200 text-slate-650 hover:bg-slate-50 hover:border-slate-300 shadow-sm"
                 }`}
               >
                 {getIcon(tmpl.id)}
                 <span>{tmpl.name}</span>
-                <Play className={`w-3 h-3 ml-1 ${isActive ? "text-orange-400" : "text-slate-500"}`} />
+                <Play className={`w-3 h-3 ml-1 ${isActive ? "text-orange-500" : "text-slate-400"}`} />
               </button>
             );
           })}

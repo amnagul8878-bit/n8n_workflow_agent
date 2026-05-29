@@ -578,13 +578,13 @@ export default function App() {
   };
 
   return (
-    <div id="full-app-root" className="h-screen flex flex-col font-sans text-slate-100 overflow-hidden bg-slate-950">
+    <div id="full-app-root" className="h-screen flex flex-col font-sans text-slate-800 overflow-hidden bg-[#fafbfc]">
       
       {/* Top Application Header bar */}
-      <header className="h-14 border-b border-slate-800 bg-slate-900 flex items-center justify-between px-6 shrink-0 relative z-10">
+      <header className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0 relative z-10">
         <div className="flex items-center gap-3">
           {/* Custom generated workflow builder badge */}
-          <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 font-bold text-sm tracking-tighter">
+          <div className="w-8 h-8 rounded-lg bg-orange-500 border border-orange-600 flex items-center justify-center text-white font-bold text-sm tracking-tighter shadow-sm animate-[pulse_3s_infinite]">
             n8
           </div>
           <div className="flex items-center gap-2">
@@ -596,10 +596,10 @@ export default function App() {
                 setWorkflowName(e.target.value);
                 setActiveTemplateId(null);
               }}
-              className="bg-transparent font-bold tracking-tight text-sm text-white focus:outline-none border-b border-transparent hover:border-slate-700 focus:border-orange-500 rounded py-0.5 px-1.5 transition-all text-ellipsis"
+              className="bg-transparent font-bold tracking-tight text-sm text-slate-800 focus:outline-none border-b border-transparent hover:border-slate-300 focus:border-orange-500 rounded py-0.5 px-1.5 transition-all text-ellipsis"
             />
             {activeTemplateId && (
-              <span className="text-[10px] text-orange-400 bg-orange-950/40 border border-orange-500/30 px-2 py-0.5 rounded-full font-semibold font-mono uppercase tracking-wider hidden sm:inline">
+              <span className="text-[10px] text-orange-600 bg-orange-50 border border-orange-200 px-2 py-0.5 rounded-full font-semibold font-mono uppercase tracking-wider hidden sm:inline">
                 Template Active
               </span>
             )}
@@ -611,10 +611,10 @@ export default function App() {
           <button
             id="btn-global-save"
             onClick={saveWorkflowState}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-850 hover:bg-slate-800 border border-slate-800 cursor-pointer transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-650 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 border border-slate-200 cursor-pointer transition-colors"
             title="Save workflow structure server-side"
           >
-            <Save className="w-3.5 h-3.5" />
+            <Save className="w-3.5 h-3.5 text-slate-500" />
             <span className="hidden sm:inline">Save</span>
           </button>
 
@@ -622,10 +622,10 @@ export default function App() {
             id="btn-global-execute"
             onClick={handleExecuteWorkflow}
             disabled={isExecutingWorkflow}
-            className={`flex items-center gap-1.5 px-5 py-1.5 rounded-lg text-xs font-bold text-white shadow-lg cursor-pointer transition-all duration-200 ${
+            className={`flex items-center gap-1.5 px-5 py-1.5 rounded-lg text-xs font-bold text-white shadow-sm cursor-pointer transition-all duration-200 ${
               isExecutingWorkflow
                 ? "bg-amber-600/50 border border-amber-600/30 shadow-none cursor-not-allowed animate-pulse"
-                : "bg-orange-500 hover:bg-orange-600 border border-orange-400/20 hover:shadow-[0_0_15px_rgba(249,115,22,0.35)]"
+                : "bg-orange-500 hover:bg-orange-600 border border-orange-400/25 hover:shadow-[0_2px_8px_rgba(249,115,22,0.2)]"
             }`}
           >
             <Play className={`w-3.5 h-3.5 ${isExecutingWorkflow ? "animate-spin" : ""}`} />
